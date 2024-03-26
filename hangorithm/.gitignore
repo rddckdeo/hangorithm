@@ -59,7 +59,7 @@ FinalProject/.classpath
 target/
 
 bulid/
-FinalProject/src/main/webapp/WEB-INF/spring/root-context.xml
+hangorithm/src/main/webapp/WEB-INF/spring/root-context.xml
 # External tool builders
 .externalToolBuilders/
 
