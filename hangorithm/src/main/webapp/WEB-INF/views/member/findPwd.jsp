@@ -10,21 +10,21 @@
 <script src="/resources/javascript/member.js"></script>
 
 </head>
-<body class="loginBody">
+<body>
 	<div class="positionCard">
 		<div class="card alignCenter direction2">
 			<p class="logo displayAllCenter" onclick="mainForm()">Hangorithm</p>
-			<form action="login.do" method="post" class="width100">
+			<form action="" class="width100">
 				<div class="direction2 marginBottom10">
 					<span class="loginFont marginBottom10">ID : </span>
 					<div class="width100 justifyCenter">
-						<input type="text" class="loginInput" name="id" placeholder="아이디를 입력해주세요">
+						<input type="text" class="loginInput">
 					</div>
 				</div>
 				<div class="direction2 marginBottom20">
 					<span class="loginFont marginBottom10">PWD : </span>
 					<div class="width100 justifyCenter">
-						<input type="password" class="loginInput" name="pwd" placeholder="비밀번호를 입력해주세요">
+						<input type="password" class="loginInput">
 					</div>
 				</div>
 				<a class="findA" href="/member/registerForm.do">회원이 아니신가요?</a>
@@ -32,7 +32,7 @@
 					<a class="findA" href="/member/findId.do">아이디 찾기</a>
 					<a class="findA" href="/member/findPwd.do">비밀번호 찾기</a>
 				</div>
-				<div class="justifyCenter"><button class="loginBtn" type="submit">로그인</button></div>
+				<div class="justifyCenter"><button class="loginBtn">로그인</button></div>
 			</form>
 			<div class="width80">
 				<div class="justifyCenter SNSBox">SNS Login</div>

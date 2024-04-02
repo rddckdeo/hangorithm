@@ -3,10 +3,49 @@
 
 <mapper namespace="memberMapper">
 	
+	<resultMap type="company" id="companyResultSet">
+	    <result column="c_no" property="cNo"></result>
+	    <result column="c_ondate" property="cOndate"></result>
+	    <result column="c_indate" property="cIndate"></result>
+	    <result column="c_deldate" property="cDeldate"></result>
+	    <result column="c_name" property="cName"></result>
+	    <result column="c_num" property="cNum"></result>
+	    <result column="c_location" property="cLocation"></result>
+	    <result column="c_business" property="cBusiness"></result>
+	</resultMap>
 	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{id}
+	</select>
 	
-	
-	
-	
+	<select id="findCompany" resultMap="companyResultSet">
+	    SELECT * FROM COMPANY
+	    WHERE C_NAME LIKE '%' || #{companyName} || '%'
+	</select>
+	<!-- 회사 중복 체크 -->
+	<select id="checkCompany" resultType="_int">
+		SELECT COUNT(*) FROM COMPANY
+		WHERE C_NAME = #{cName}
+		AND C_BUSINESS = #{cBusiness}
+	</select>
+	<!-- 회사 추가 -->
+	<insert id="companyEnroll">
+		INSERT INTO COMPANY(
+			C_NO,
+			C_ONDATE,
+			C_NAME,
+			C_NUM,
+			C_LOCATION,
+			C_BUSINESS
+		) VALUES (
+			company_seq.nextval,
+			SYSDATE,
+			#{cName},
+			#{cNum},
+			#{cLocation},
+			#{cBusiness}
+		)
+	</insert>
 	
 </mapper>
