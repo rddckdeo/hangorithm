@@ -9,6 +9,32 @@ body{
 .width80{
 	width:80%;
 }
+.width70{
+	width:70%;
+}
+.width60{
+	width:60%;
+}
+.width50{
+	width:50%;
+}
+.width40{
+	width:40%;
+}
+.width30{
+	width:30%;
+}
+.width20{
+	width:20%;
+}
+.width15{
+	width:15%;
+}
+.width10{
+	width:10%;
+}
+
+
 .height100{
 	height:100%;
 }
@@ -33,7 +59,10 @@ body{
 	display:flex;
 	justify-content:flex-end;
 }
-
+.justifyStart{
+	display:flex;
+	justify-content:flex-start;
+}
 .alignCenter{
 	display:flex;
 	align-items:center;
@@ -73,4 +102,8 @@ body{
 }
 .marginTop20{
 	margin-top:20px;
+}
+
+.textCenter{
+	text-align:center;
 }

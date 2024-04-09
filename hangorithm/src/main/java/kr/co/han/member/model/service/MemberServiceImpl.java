@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.han.common.paging.PageInfo;
 import kr.co.han.member.model.dao.MemberDAO;
 import kr.co.han.member.model.dto.CompanyDTO;
 
@@ -20,8 +21,8 @@ public class MemberServiceImpl {
 		return memberDao.idCheck(sqlSession, id);
 	}
 	// company find
-	public List<String> findCompany(String companyName){
-		return memberDao.findCompany(sqlSession, companyName);
+	public List<CompanyDTO> findCompany(String companyName, PageInfo pi){
+		return memberDao.findCompany(sqlSession, companyName, pi);
 	}
 	// company Enroll
 	public int companyEnroll(CompanyDTO company) {
@@ -32,5 +33,9 @@ public class MemberServiceImpl {
 		return memberDao.checkCompany(sqlSession, company);
 	}
 	
+//	paging 처리
+	public int companyListCount(String companyName) {
+		return memberDao.companyListCount(sqlSession, companyName);
+	}
 	
 }
