@@ -47,5 +47,8 @@
 			#{cBusiness}
 		)
 	</insert>
-	
+	<select id="companyListCount" resultType="_int">
+		SELECT COUNT(*) FROM COMPANY
+		WHERE C_NAME = #{companyName}
+	</select>
 </mapper>

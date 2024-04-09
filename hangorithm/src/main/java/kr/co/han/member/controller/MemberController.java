@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.han.common.paging.PageInfo;
+import kr.co.han.common.paging.Pagenation;
 import kr.co.han.member.model.dto.CompanyDTO;
 import kr.co.han.member.model.service.MemberServiceImpl;
 
@@ -70,10 +72,20 @@ public class MemberController {
 	//find Company
 	@GetMapping("/findCompanyBoard.do")
 	public String findCompanyBoard(Model model,HttpSession session,
-							@RequestParam("companyName")String companyName) {
+							@RequestParam("companyName")String companyName,
+							@RequestParam(value="cpage", defaultValue="1")int cpage){
+		//page
+		int pageLimit = 5;
+		int boardLimit = 5;
+		int listCount = memberService.companyListCount(companyName);
+		PageInfo pi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		List<String>company = memberService.findCompany(companyName);
-		
+		//list
+		List<CompanyDTO> company = memberService.findCompany(companyName, pi);
+		//model
+		model.addAttribute("companyName",companyName);
+		model.addAttribute("company",company);
+		model.addAttribute("pi",pi);
 		
 		return "/member/findCompany";
 	}
@@ -110,5 +122,7 @@ public class MemberController {
 			return "null";
 		}
 	}
+	
+	
 	
 }

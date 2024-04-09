@@ -111,7 +111,8 @@
 					<span class="loginFont marginBottom10">Company</span>
 					<div class="width100 direction1">
 						<div class="width100">
-							<input type="text" class="loginInput" name="id" disabled>
+							<input type="text" class="loginInput" id="RegisterCompanyName" name="companyName" disabled value="">
+							<input type="hidden" value="" id="RegisterCompanyNo" name="companyNo">
 						</div>
 						<button type="button" class="checkBtn" onclick="findCompany()">회사 찾기</button>
 					</div>

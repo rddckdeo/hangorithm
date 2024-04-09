@@ -76,7 +76,7 @@ function loginForm(){
 function findCompany() {
     // 새 창의 폭과 높이를 지정합니다.
     let width = 600;
-    let height = 420;
+    let height = 600;
 
     // 창의 위치를 계산하여 가운데로 배치합니다.
     let left = (screen.width - width)/2;
@@ -118,14 +118,38 @@ function idCheck(){
 		})
 	}
 }
+
+
 /*find Company form submit*/
 function findCompanyBoard(){
 	let form = document.getElementById("findCompanyForm");
+	let companyName = document.getElementById("companyName").value.trim();
 	
-	form.action = "/member/findCompanyBoard.do";
-	form.method = "GET";
-	form.submit();
+	if(companyName == ''){
+		alert("검색어를 입력해주세요.");
+	}else{
+		form.action = "/member/findCompanyBoard.do";
+		form.method = "GET";
+		form.submit();
+	}
+	
 }
+/*find Company form submit onkeyup*/
+function findCompanyBoard2(event){
+	if(event.keyCode == 13){
+		let form = document.getElementById("findCompanyForm");
+		let companyName = document.getElementById("companyName").value.trim();
+		
+		if(companyName == ''){
+			alert("검색어를 입력해주세요.");
+		}else{
+			form.action = "/member/findCompanyBoard.do";
+			form.method = "GET";
+			form.submit();
+		}
+	}
+}
+
 /* CompanyDiv Switch*/
 function CompanyDivSwitch(){
 	let enroll = document.getElementById("companyEnrollDiv");
@@ -177,3 +201,24 @@ function companyEnroll(){
 	}
 	
 }
+
+function companyDataSend(cNo,cName){
+	let companyData = {
+		cNo : cNo,
+		cName,
+	}
+	
+	$.ajax({
+		url:'/member/companyDataSend;',
+		data:JSON.stringify(companyData),
+		dataType:"json",
+		contentType: "application/json; charset=utf-8;",
+		type:'POST',
+		dataType: "text",
+		success : function(data){
+			console.log(data);
+		}
+	})
+}
+
+
