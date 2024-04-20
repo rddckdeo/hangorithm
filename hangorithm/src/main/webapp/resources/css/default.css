@@ -6,6 +6,9 @@ body{
 .width100{
 	width:100%;
 }
+.width90{
+	width:90%;
+}
 .width80{
 	width:80%;
 }
@@ -83,13 +86,31 @@ body{
 }
 
 /* border */
+.borderDefault{
+	border: 1px solid;
+}
+
 .borderBottom{
 	border-bottom: 1px solid #3333;
 }
-
+.borderTop{
+	border-top: 1px solid #3333;
+}
 /* padding margin */
 .paddingBottom{
 	padding-bottom:20px;
+}
+.paddingBottom10{
+	padding-bottom:10px;
+}
+.paddingBottom30{
+	padding-bottom:30px;
+}
+.paddingTop20{
+	padding-top:20px;	
+}
+.paddingTop30{
+	padding-top:30px;	
 }
 .marginBottom10{
 	margin-bottom:10px;
@@ -107,3 +128,12 @@ body{
 .textCenter{
 	text-align:center;
 }
+.aTag{
+	text-decoration-line:none;
+	color:black;
+}
+
+.font14{
+	font-size:14px;
+}
+
