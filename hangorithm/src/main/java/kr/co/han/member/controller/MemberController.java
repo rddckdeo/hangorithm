@@ -5,9 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.han.common.paging.PageInfo;
 import kr.co.han.common.paging.Pagenation;
 import kr.co.han.member.model.dto.CompanyDTO;
+import kr.co.han.member.model.dto.MemberDTO;
+import kr.co.han.member.model.dto.RegisterDTO;
 import kr.co.han.member.model.service.MemberServiceImpl;
 
 @Controller
@@ -24,9 +28,16 @@ import kr.co.han.member.model.service.MemberServiceImpl;
 public class MemberController {
 	@Autowired
 	MemberServiceImpl memberService;
+	@Autowired
+	BCryptPasswordEncoder bc;
 	
 	@GetMapping("/loginForm.do")
-	public String loginForm() {
+	public String loginForm(HttpSession session, Model model) {
+		
+		String status = (String)session.getAttribute("status");
+		session.removeAttribute("status");
+		model.addAttribute("status", status);
+		
 		return "/member/loginForm";
 	}
 	@GetMapping("/registerForm.do")
@@ -45,18 +56,53 @@ public class MemberController {
 	public String findCompany() {
 		return "/member/findCompany";
 	}
+	@GetMapping("myPageForm.do")
+	public String myPageForm() {
+		return "redirect:/mypage/myinfoForm.do";
+	}
 	
 	//login
 	@PostMapping("/login.do")
-	public String login(HttpSession session,
+	public String login(HttpSession session, Model model,
 						@RequestParam("id") String id,
 						@RequestParam("pwd") String pwd) {
-		System.out.println(id);
-		System.out.println(pwd);
+		MemberDTO login = new MemberDTO();
+		login.setMId(id);
+		login.setMPwd(pwd);
 		
+		try{
+			// DB에서 정보 가져오기
+			MemberDTO getLogin = memberService.login(login);
+			if(bc.matches(login.getMPwd(),getLogin.getMPwd()) && login.getMPwd() != null){
+				System.out.println("login 완료");
+				// birth 뒤에 시간 우수리
+				String birth = getLogin.getMBirth().substring(0,10);
+				getLogin.setMBirth(birth);
+				
+				session.setAttribute("login", getLogin);
+				
+				return "redirect:/";
+			}else if(login.getMPwd() == null){
+				session.setAttribute("status", "null");
+				return "redirect:/member/loginForm.do";
+			}else {
+				session.setAttribute("status", "false");
+				return "redirect:/member/loginForm.do";
+			}
+		}catch(NullPointerException e) {
+			session.setAttribute("status","notId");
+			System.out.println("login NullPointer 발생");
+			return "redirect:/member/loginForm.do";
+		}
 		
-		return "redirect:/member/loginForm.do";
 	}
+	// logout
+	@GetMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	// idCheck
 	@ResponseBody
 	@GetMapping("/idCheck.do")
@@ -123,6 +169,26 @@ public class MemberController {
 		}
 	}
 	
-	
+	@PostMapping("register.do")
+	public String register(@ModelAttribute RegisterDTO register
+							) {
+		// BCrypt를 통한 password 암호화
+		String password = bc.encode(register.getPwd());
+		String path = null;
+		register.setPwd(password);
+		
+		if(path == null) {
+			register.setPath("/resources/upload/main/");
+			register.setImg("default.png");
+		}
+		
+		int result = memberService.register(register);
+		System.out.println(result);
+		if(result > 0) {
+			return "/member/loginForm";
+		}else {
+			return "error";
+		}
+	}
 	
 }

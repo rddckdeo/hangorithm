@@ -1,0 +1,161 @@
+/* common */
+p{
+	margin:0;
+}
+.title{
+	font-size:30px;
+	font-weight:700;
+	margin:5px 15px 5px 15px;
+	padding-bottom:10px;
+	color:#7F96FF;
+	border-bottom:1px solid;
+}
+
+/* profile */
+.contentImg{
+	width:150px;
+	height:150px;
+}
+
+.contentDiv2{
+	width:250px;
+}
+.contentDiv3{
+	width:250px;
+	padding: 15px;
+}
+
+.contentName{
+	font-size:24px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.contentInfo1{
+	font-size:20px;
+	font-weight:900;
+}
+.contentInfo2{
+	font-size:14px;
+	width:50px;
+}
+
+.contentBtn{
+	background-color:#1F96FF;
+	color:white;
+	border-radius:1rem;
+	border: 1px solid #3333;
+	margin: 5px 0 5px 0;
+	padding:5px;
+}
+.marginRight5{
+	margin-right:5px;
+}
+.marginBottom5{
+	margin-bottom:5px;
+}
+.fontWeight{
+	font-weight:600;
+}
+
+/* infoList */
+.infoBoard{
+	border:1px solid #3333;
+	border-radius:1rem;
+	margin:10px;
+	padding:10px;
+	height:80%;
+	min-height:220px;
+}
+
+.infoCard1{
+	background-color:#EFF5FF;
+	border-radius:1rem;
+	width:95%;
+	height:160px;
+	padding:5px;
+	margin:2px;
+}
+.font1{
+	font-size:18px;
+	font-weight:600;
+}
+.font2{
+	font-size:20px;
+	font-weight:800;
+}
+.textAlign{
+	text-align:center;
+}
+.thMain{
+	border-bottom:1px solid;
+	padding-bottom:5px;
+	margin: 0 5px 0 5px;
+	font-weight:600;
+}
+
+.thContent{
+	margin-bottom:5px;
+}
+
+.td1{
+	width:20%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.td2{
+	width:50%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.td3{
+	width:30%;
+	text-overflow: ellipsis;
+ 	white-space: nowrap;
+	overflow: hidden;
+}
+
+.pagingBtn{
+	text-decoration-line:none;
+	background-color: #7F96FF;
+	color:white;
+	border-radius:2rem;
+	margin:5px;
+	cursor:pointer;
+	text-align:center;
+}
+
+.pagingBtnSize{
+	width:21px;
+	height:21px;
+}
+/* techList */
+.techBoard{
+	border:1px solid #3333;
+	border-radius:1rem;
+	margin:10px;
+	padding:10px;
+	height:80%;
+	min-height:220px;
+}
+.techBoard2{
+	width:20%;
+	display:flex;
+	justify-content:flex-start;
+	align-items:center;
+}
+
+.techListBtn{
+	width:100%;
+	background-color:#1F96FF;
+	color:white;
+	border-radius:1rem;
+	border: 1px solid #3333;
+	margin: 5px 0 5px 0;
+	padding:5px;
+	cursor:pointer;
+}
+
+/* education */
+/* techBoard techBoard2  techListBtn*/

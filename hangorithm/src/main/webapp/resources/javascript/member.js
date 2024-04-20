@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
+	sessionStorage.clear();
+});
+
 function mainForm(){
 	window.location ="/";
 }
@@ -10,17 +14,21 @@ document.addEventListener("DOMContentLoaded", function() {
         let positionSelect = this.options[this.selectedIndex].text;
         let position = document.getElementById("position"); // input
         let status = document.getElementById("status").value;
+		let hiddenPosition = document.getElementById("positionHidden");
 		
         if(status == 0){
             position.value = positionSelect; //input값 변경
+			hiddenPosition.value = positionSelect;
             document.getElementById("status").value = 1; // status 변경
             position.disabled = true; // 비활성화
         }else if(status == 1 && positionSelect === "-선택해주세요-"){
             position.value = null;
+			hiddenPosition.value = null;
             document.getElementById("status").value = 0;
             position.disabled = false;
         }else{
             position.value = positionSelect;
+			hiddenPosition.value = positionSelect;
         } 
     });
 	// 연구원
@@ -28,17 +36,22 @@ document.addEventListener("DOMContentLoaded", function() {
         let positionSelect2 = this.options[this.selectedIndex].text;
         let position = document.getElementById("position"); // input
         let status = document.getElementById("status").value;
-		
+		let hiddenPosition = document.getElementById("positionHidden");
+
         if(status == 0){
             position.value = positionSelect2; //input값 변경
+			hiddenPosition.value = positionSelect2;
             document.getElementById("status").value = 1; // status 변경
             position.disabled = true; // 비활성화
         }else if(status == 1 && positionSelect2 === "-선택해주세요-"){
             position.value = null;
+			hiddenPosition.value = null;
             document.getElementById("status").value = 0;
             position.disabled = false;
         }else{
             position.value = positionSelect2;
+			hiddenPosition.value = positionSelect2;
+
         } 
     });
 	
@@ -89,14 +102,17 @@ function findCompany() {
 function idCheck(){
 	let idInput = document.getElementById("idInput").value.trim();
 	let div = document.getElementById("idCheckResult");
+	let hiddenId = document.getElementById("idInputHidden");
+	document.getElementById("idInput").disabled = true;
+
 	// 이전 결과를 제거
     div.innerHTML = ""; // div 내용을 모두 지움
-	let result = document.createElement('P');
-	div.appendChild(result);
 	if(idInput == ""){
 		alert("ID를 입력해주세요");
+		document.getElementById("idInput").disabled = false;
 	}else if(idInput.length < 6){
 		alert("아이디를 6자 이상 입력해주세요");
+		document.getElementById("idInput").disabled = false;
 	}else{
 		$.ajax({
 			url: "/member/idCheck.do",
@@ -104,15 +120,40 @@ function idCheck(){
 			type: "GET",
 			success : function(data){
 				if(data == "1"){
+					let result = document.createElement('P');
+					div.appendChild(result);
 					result.textContent = '사용할 수 없는 아이디입니다.';
 					result.classList.add('idCheckFont');
 					result.style.color = 'red';
-					//value같은거 넣어서 나중에 form 조건 만들어야함
+					document.getElementById("idInput").disabled = false;
 				}else{
+					let result = document.createElement('P');
+					let button = document.createElement('BUTTON');
+					div.appendChild(result);
+					div.appendChild(button);
+					// p태그 요소
 					result.textContent = '사용 가능한 아이디입니다.';
 					result.classList.add('idCheckFont');
 					result.style.color = 'green';
-					
+					// 버튼 요소
+					button.textContent = '확정';
+					button.classList.add('checkBtn2');
+					button.type = 'button';
+					button.onclick = function(){
+						if(confirm("아이디를 확정지으시겠습니까?")){
+							alert("확정되었습니다.");
+							div.innerHTML = ""; // div 내용을 모두 지움
+							sessionStorage.setItem("idCheck",'yes');
+							hiddenId.value = idInput;
+						}else{
+							document.getElementById("idInput").disabled = false;
+							// 이전 결과를 제거
+						    div.innerHTML = ""; // div 내용을 모두 지움
+							document.getElementById("idInput").value = ""; // input 값 지우기
+							sessionStorage.removeItem('idCheck');
+							hiddenId.value = "";
+						}
+					}
 				}
 			}
 		})
@@ -201,24 +242,73 @@ function companyEnroll(){
 	}
 	
 }
-
-function companyDataSend(cNo,cName){
-	let companyData = {
+// companyFind의 데이터를 register.form으로 전달하는 code
+function companyDataSend(cNo, cName){
+	let data = {
 		cNo : cNo,
-		cName,
+		cName: cName
+	};
+	window.opener.postMessage(data);
+	window.close();
+}
+// companyDataSend로 받은 데이터를 input 안에 넣어주는 것
+window.addEventListener("message",function(event){
+	let receivedData = event.data;
+	document.getElementById("RegisterCompanyName").value = receivedData.cName;
+	document.getElementById("RegisterCompanyNo").value = receivedData.cNo;
+	sessionStorage.setItem("company",'yes');
+
+})
+
+function register(){
+	const form = document.getElementById("registerForm");
+	let idCheck = sessionStorage.getItem("idCheck");
+	let company = sessionStorage.getItem("company");
+	
+	let inputCheck = registerInputCheck();
+	
+	if(idCheck != null && company != null && inputCheck == 1){
+		if(confirm("가입하시겠습니까?")){
+			sessionStorage.clear();
+			form.action = "/member/register.do";
+			form.method = "POST";
+			form.submit();
+		}
+		
+	}else if(idCheck == null && company != null){
+		alert("아이디 확정을 해주세요");
+		event.preventDefault();
+	}else if(idCheck != null && company == null){
+		alert("회사를 선택해주세요");
+		event.preventDefault();
+	}else{
+		alert("아직 필요한 항목이 채워지지 않았습니다.");
+		event.preventDefault();
 	}
 	
-	$.ajax({
-		url:'/member/companyDataSend;',
-		data:JSON.stringify(companyData),
-		dataType:"json",
-		contentType: "application/json; charset=utf-8;",
-		type:'POST',
-		dataType: "text",
-		success : function(data){
-			console.log(data);
-		}
-	})
 }
 
-
+function registerInputCheck(){
+	let pwd = document.getElementById("password").value.trim();
+	let email = document.getElementById("email").value.trim();
+	let name = document.getElementById("name").value.trim();
+	let position = document.getElementById("position").value.trim();
+	let number = document.getElementById("number").value.trim();
+	let birth = document.getElementById("birth").value.trim();
+	if(pwd == '' || email == '' || name == '' || position == '' || number == '' || birth == ''){
+		return 0;
+	}else{
+		return 1;
+	}
+}
+// login 실패 시 alert
+document.addEventListener("DOMContentLoaded", function(){
+	let loginStatus = document.getElementById("loginStatus").value;
+	if(loginStatus == 'notId'){
+		alert("아이디 또는 패스워드를 확인해주세요.");
+	}else if(loginStatus == 'false'){
+		alert("아이디 또는 패스워드를 확인해주세요.");
+	}else if(loginStatus == 'null'){
+		alert("아이디 또는 패스워드를 확인해주세요.");
+	}
+});

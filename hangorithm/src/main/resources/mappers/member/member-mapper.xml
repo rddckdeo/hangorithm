@@ -14,6 +14,24 @@
 	    <result column="c_business" property="cBusiness"></result>
 	</resultMap>
 	
+	<resultMap type="member" id="memberResultSet">
+		<result column="m_no" property="mNo"></result>
+		<result column="m_ondate" property="mOndate"></result>
+		<result column="m_indate" property="mIndate"></result>
+		<result column="m_deletedate" property="mDeldate"></result>
+		<result column="m_name" property="mName"></result>
+		<result column="m_position" property="mPosition"></result>
+		<result column="m_num" property="mNum"></result>
+		<result column="m_birth" property="mBirth"></result>
+		<result column="m_id" property="mId"></result>
+		<result column="m_pwd" property="mPwd"></result>
+		<result column="m_email" property="mEmail"></result>
+		<result column="m_img" property="mImg"></result>
+		<result column="m_path" property="mPath"></result>
+		<result column="c_no" property="cNo"></result>
+		<result column="m_type" property="mType"></result>
+	</resultMap>
+	
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		WHERE M_ID = #{id}
@@ -51,4 +69,41 @@
 		SELECT COUNT(*) FROM COMPANY
 		WHERE C_NAME = #{companyName}
 	</select>
+	
+	<insert id="register">
+		INSERT INTO MEMBER(
+			M_NO,
+			M_ONDATE,
+			M_NAME,
+			M_POSITION,
+			M_NUM,
+			M_BIRTH,
+			M_ID,
+			M_PWD,
+			M_EMAIL,
+			M_IMG,
+			M_PATH,
+			C_NO
+		) VALUES (
+			member_seq.nextval,
+			SYSDATE,
+			#{name},
+			#{position},
+			#{number},
+			#{birth},
+			#{id},
+			#{pwd},
+			#{email},
+			#{img},
+			#{path},
+			#{companyNo}
+		)
+	</insert>
+	
+	<select id="login" resultMap="memberResultSet">
+		SELECT * FROM MEMBER
+		WHERE M_ID = #{mId}
+		AND M_DELDATE IS NULL
+	</select>
+	
 </mapper>

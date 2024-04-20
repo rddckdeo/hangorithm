@@ -16,7 +16,7 @@
 	<div class="positionCardRegister">
 		<div class="cardRegister alignCenter direction2">
 			<p class="logo displayAllCenter" onclick="mainForm()">Hangorithm</p>
-			<form action="register.do" method="post" class="width100">
+			<form class="width100" id="registerForm">
 				<!-- profile -->
 				<div class="justifyEve alignCenter">
 					<img class="registerImg" src="/resources/upload/main/default.png">
@@ -28,11 +28,12 @@
 					<span class="loginFont marginBottom10">ID</span>
 					<div class="direction1">
 						<div class="width100">
-							<input type="text" class="loginInput" name="id" id="idInput">
+							<input type="text" class="loginInput" id="idInput">
+							<input type="hidden" name="id" id="idInputHidden">
 						</div>
 						<button type="button" class="checkBtn" onclick="idCheck()">중복체크</button>
 					</div>
-					<div id="idCheckResult">
+					<div id="idCheckResult" class="direction1">
 						
 					</div>
 				</div>
@@ -40,28 +41,29 @@
 				<div class="direction2 marginBottom20">
 					<span class="loginFont marginBottom10">PWD</span>
 					<div class="width100">
-						<input type="password" class="loginInput" name="pwd">
+						<input id="password"type="password" class="loginInput" name="pwd" required>
 					</div>
 				</div>
 				<!-- email -->
 				<div class="direction2 marginBottom20">
 					<span class="loginFont marginBottom10">E-mail</span>
 					<div class="width100">
-						<input type="email" class="loginInput" name="email">
+						<input id="email" type="email" class="loginInput" name="email" required>
 					</div>
 				</div>
 				<!-- name -->
 				<div class="direction2 marginBottom10">
 					<span class="loginFont marginBottom10">Name</span>
 					<div class="width100">
-						<input type="text" class="loginInput" name="name" value="">
+						<input id="name" type="text" class="loginInput" name="name" value="" required>
 					</div>
 				</div>
 				<!-- position -->
 				<div class="direction2 marginBottom10">
 					<span class="loginFont marginBottom10">Position</span>
 					<div class="width100">
-						<input type="text" class="loginInput" name="position" id="position" value="">
+						<input type="text" class="loginInput" id="position" required>
+						<input type="hidden" value="0" id="positionHidden" name="position">
 						<input type="hidden" value="0" id="status">
 						<div class="direction1 alignCenter justifyAround">
 						<div class="alignCenter"><input type="checkbox" id="positionCheck" class="selectCheckBox">연구원 직책</div>
@@ -96,14 +98,15 @@
 				<div class="direction2 marginBottom10">
 					<span class="loginFont marginBottom10">Number</span>
 					<div class="width100">
-						<input type="text" class="loginInput" name="id">
+						<input id="number" type="number" class="loginInput" name="number" required>
+						<p class="idCheckFont">숫자만 입력해주세요 ( '-' 빼고 입력해주세요 )</p>
 					</div>
 				</div>
 				<!-- birth -->
 				<div class="direction2 marginBottom10">
 					<span class="loginFont marginBottom10">Birth Day</span>
 					<div class="width100">
-						<input type="date" class="loginInput" name="id">
+						<input id="birth" type="date" class="loginInput" name="birth" required>
 					</div>
 				</div>
 				<!-- company -->
@@ -111,7 +114,7 @@
 					<span class="loginFont marginBottom10">Company</span>
 					<div class="width100 direction1">
 						<div class="width100">
-							<input type="text" class="loginInput" id="RegisterCompanyName" name="companyName" disabled value="">
+							<input type="text" class="loginInput" id="RegisterCompanyName" name="companyName" disabled value="" required>
 							<input type="hidden" value="" id="RegisterCompanyNo" name="companyNo">
 						</div>
 						<button type="button" class="checkBtn" onclick="findCompany()">회사 찾기</button>
@@ -121,7 +124,7 @@
 				<div class="width100 justifyCenter marginBottom20 marginTop20">
 					<a class="findA" onclick="loginForm()">이미 회원이신가요?</a>
 				</div>
-				<div class="justifyCenter"><button class="loginBtn" type="submit">회원가입</button></div>
+				<div class="justifyCenter"><button class="loginBtn" type="button" onclick="register()">회원가입</button></div>
 			</form>
 		</div>
 	</div>

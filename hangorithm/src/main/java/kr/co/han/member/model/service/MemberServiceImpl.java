@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import kr.co.han.common.paging.PageInfo;
 import kr.co.han.member.model.dao.MemberDAO;
 import kr.co.han.member.model.dto.CompanyDTO;
+import kr.co.han.member.model.dto.MemberDTO;
+import kr.co.han.member.model.dto.RegisterDTO;
 
 @Service
 public class MemberServiceImpl {
@@ -32,10 +34,16 @@ public class MemberServiceImpl {
 	public int checkCompany(CompanyDTO company) {
 		return memberDao.checkCompany(sqlSession, company);
 	}
-	
 //	paging 처리
 	public int companyListCount(String companyName) {
 		return memberDao.companyListCount(sqlSession, companyName);
 	}
-	
+	// register
+	public int register(RegisterDTO register) {
+		return memberDao.register(sqlSession, register);
+	}
+	// login
+	public MemberDTO login(MemberDTO login) {
+		return memberDao.login(sqlSession, login);
+	}
 }

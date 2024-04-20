@@ -9,10 +9,12 @@
 	<typeAliases>
 		<typeAlias type="kr.co.han.member.model.dto.MemberDTO" alias="member"/>
 		<typeAlias type="kr.co.han.member.model.dto.CompanyDTO" alias="company"/>
+		<typeAlias type="kr.co.han.main.model.dto.BoardDTO" alias="board"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member/member-mapper.xml"></mapper>
+		<mapper resource="/mappers/main/main-mapper.xml"></mapper>
 	</mappers>
 
 

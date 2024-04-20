@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mainMapper">
+
+	 <resultMap type="board" id="boardResultSet">
+		<result column="b_no" property="no"></result>
+		<result column="b_ondate" property="ondate"></result>
+		<result column="b_indate" property="indate"></result>
+		<result column="b_deldate" property="deldate"></result>
+		<result column="b_title" property="title"></result>
+		<result column="b_content" property="content"></result>
+		<result column="m_no" property="mNo"></result>
+	</resultMap>
+	<select id="boardListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+		WHERE B_DELDATE IS NULL
+	</select>
+	
+	<select id="boardList" resultMap="boardResultSet">
+		SELECT * FROM BOARD
+		WHERE B_DELDATE IS NULl
+	</select>
+</mapper>

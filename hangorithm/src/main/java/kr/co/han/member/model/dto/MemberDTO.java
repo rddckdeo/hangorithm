@@ -20,4 +20,5 @@ public class MemberDTO {
 	private String mImg;
 	private String mPath;
 	private int cNo;
+	private String mType;
 }

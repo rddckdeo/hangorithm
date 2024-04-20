@@ -42,6 +42,12 @@
 					<img class="SNSImg" src="/resources/upload/main/naver.png">
 				</div>
 			</div>
+			<!-- login status -->
+			<c:if test="${!empty status}">
+				<input type="hidden" value="${status}" id="loginStatus">
+			</c:if>
+			
+			
 		</div>
 	</div>
 </body>

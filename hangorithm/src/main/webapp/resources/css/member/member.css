@@ -1,3 +1,10 @@
+/* 기본 설정 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* ----------------------------------------------- */
 .loginBody{
 	background-color:#EFF5FF;
 }
@@ -61,7 +68,7 @@
 }
 .findA{
 	text-decoration-line:none;
-	color: blue;
+	color:#495057;
 	font-size:14px;
 	cursor:pointer;
 }
@@ -114,6 +121,15 @@
 	border:none;
 	border-radius:1rem;
 	background-color:#EFF5FF;
+}
+.checkBtn2{
+	min-width:70px;
+	border:none;
+	border-radius:1rem;
+	background-color:#EFF5FF;
+	margin-left:10px;
+	margin-top:8px;
+	border:1px solid #3333;
 }
 
 .selectBox{
@@ -231,4 +247,16 @@
 	text-align:center;
 	cursor:pointer;
 	text-decoration-line:none;
+}
+
+.findForm{
+	height:60%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+}
+.findMainFont{
+	font-size:24px;
+	font-weight:600;
+	margin:0;
 }

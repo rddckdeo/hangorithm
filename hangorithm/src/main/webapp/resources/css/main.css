@@ -1,3 +1,7 @@
+body{
+	margin-bottom:10vh;
+}
+
 .headerLogo{
 	width:200px;
 	min-height:75px;
@@ -20,8 +24,29 @@
 }
 
 .headerDiv1-2{
-	width:20%;
+	width:30%;
 	font-size:0.8vw;
+}
+@media (min-width:1300px){
+	.headerDiv1-2{
+		width:20%;
+		font-size:0.8vw;
+	}	
+}
+
+@media (max-width:1000px){
+	.headerDiv1-2{
+		display:none;
+	}
+	.headerLogo{
+	width:200px;
+	min-height:75px;
+	
+	font-family:'Palatino Linotype';
+	font-size:30px;
+	font-weight:900;
+	margin-right:15px;
+	}
 }
 
 .headerDiv2{
@@ -64,7 +89,7 @@
 .main{
 	background-color:#EFF5FF;
 	width:90%;
-	height:300px;
+	height:400px;
 	
 }
 
@@ -85,6 +110,13 @@
 .mainBox2Click{
 	cursor:pointer;
 }
+.mainBox2Click:hover{
+	cursor:pointer;
+	background-color:#3333;
+	border-radius:1rem;
+	padding:5px 2px 5px 2px;
+}
+
 
 .mainBox3{
 	background-color:white;
@@ -101,10 +133,101 @@
 .footer{
 	position:fixed;
 	width:100%;
-	height:15vh;
+	height:10vh;
 	border-top:1px solid #3333;
 	background-color:#EFF5FF;
 	font-size:1.5vw;
 	
 	bottom:0;
+}
+.footerFont{
+	margin:10px;
+	font-size:14px;
+	font-weight:600;
+}
+
+/* -----------------main Box--------------------- */
+.mainDiv{
+	width:100%;
+	height: 550px;
+}
+.mainDiv2{
+	padding-left:90px;
+	background-color:#495057;
+}
+.introFont1{
+	font-weight:700;
+	font-size:140px;
+	color:black;
+}
+.introFont2{
+	font-weight:700;
+	font-size:140px;
+	color:#EFF5FF;
+}
+.introFont3{
+	font-weight:300;
+	font-size:22px;
+	color:#EFF5FF;
+}
+
+.introDiv1{
+	width:50%;
+	height:100%;
+	transition: 0.5s ease-out;
+}
+.introDiv2{
+	height:50%;
+}
+.introDivBack1{
+	background-color:#3C6979;
+}
+.introDivBack2{
+	background-color:#CAC2B0;
+}
+.introDivBack3{
+	background-color:#CADDDC;
+}
+.introDivFont{
+	font-weight:400;
+	font-size:24px;
+	padding:25px 0 0 25px;
+}
+.introDivFontColor1{
+	color:#495057;
+}
+.introDivFontColor2{
+	color:white;
+}
+/* hover 효과 */
+.introDiv1:hover{
+	width:110%;
+    transition: 0.5s ease-out;
+}
+
+.mainImg{
+	width:40px;
+	height:40px;
+}
+
+.contentNull{
+	font-size:24px;
+	font-weight:700;
+}
+.contentNullButton{
+	background-color:#7F96FF;
+	color:white;
+	width:200px;
+	height:40px;
+	padding:15px;
+	border:none;
+	border-radius:1rem;
+	font-size:20px;
+	font-weight:700;
+	cursor:pointer;
+	text-align:center;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	text-decoration-line:none;
 }
