@@ -92,26 +92,34 @@ public class HeaderController {
 			// login 정보
 			MemberDTO loginDTO = (MemberDTO)session.getAttribute("login");
 			
-			int boardList = 5;
+			int boardLimit = 5;
 			int pageLimit = 5;
 			int listCount = 0;
 			// status별 List 불러오기
 			if(data.equals("infoList")) {
 				// infoList
-				listCount = mainService.boardListCount();
+				listCount = mainService.infoListCount();
 				
-				PageInfo infoPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardList);
-				List<BoardDTO> infoList = mainService.boardList(infoPi);
+				PageInfo infoPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+				List<BoardDTO> infoList = mainService.infoList(infoPi);
 				
 				model.addAttribute("list",infoList);
 				model.addAttribute("pi",infoPi);
 				
-			}else if(data.equals("techList")) {
-				System.out.println("techList 실행");
-				
 			}else if(data.equals("boardList")) {
-				System.out.println("boardList 실행");
+				listCount = mainService.boardListCount();
+				PageInfo boardPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+				List<BoardDTO> boardList = mainService.boardList(boardPi);
 				
+				model.addAttribute("list",boardList);
+				model.addAttribute("pi",boardPi);
+			}else if(data.equals("techList")) {
+				listCount = mainService.techListCount();
+				PageInfo techPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+				List<BoardDTO> techList = mainService.techList(techPi);
+				
+				model.addAttribute("list",techList);
+				model.addAttribute("pi",techPi);
 			}
 			
 		}

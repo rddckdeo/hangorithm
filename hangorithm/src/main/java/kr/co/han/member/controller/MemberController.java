@@ -48,10 +48,6 @@ public class MemberController {
 	public String FindId() {
 		return "/member/findId";
 	}
-	@GetMapping("/findPwd.do")
-	public String FindPwd() {
-		return "/member/findPwd";
-	}
 	@GetMapping("findCompany.do")
 	public String findCompany() {
 		return "/member/findCompany";
@@ -191,4 +187,31 @@ public class MemberController {
 		}
 	}
 	
+	@ResponseBody
+	@GetMapping("findIdCommit.do")
+	public String findId(@RequestParam("name")String name,
+						@RequestParam("email")String email) {
+		MemberDTO member = new MemberDTO();
+		member.setMName(name);
+		member.setMEmail(email);
+		
+		int check = memberService.findIdCheck(member);
+		if(check > 0) {
+			String id = memberService.findId(member);
+			int length = id.length();
+			StringBuilder updateId = new StringBuilder(length);
+			
+			for(int i = 0; i < length; i++) {
+				if(i <= 2) {
+					updateId.append(id.charAt(i));
+				}else {
+					updateId.append('*');
+				}
+			}
+			String findId = updateId.toString();
+			return findId;
+		}else {
+			return "not";
+		}
+	}
 }

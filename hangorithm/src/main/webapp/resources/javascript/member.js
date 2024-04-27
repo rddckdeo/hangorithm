@@ -312,3 +312,27 @@ document.addEventListener("DOMContentLoaded", function(){
 		alert("아이디 또는 패스워드를 확인해주세요.");
 	}
 });
+
+function findId(){
+	let nameInput = document.getElementById("nameInput").value;
+	let emailInput = document.getElementById("emailInput").value;
+	
+	$.ajax({
+		url : '/member/findIdCommit.do',
+		type : 'GET',
+		data : {name : nameInput, email : emailInput},
+		success : function(data){
+			if(data == 'not'){
+				alert("해당 회원은 존재하지 않습니다.");
+			}else{
+				let findIdDiv = document.getElementById("findIdDiv");
+				let resultInput = document.getElementById("resultInput");
+				
+				findIdDiv.style.display = 'block';
+				resultInput.value = data;
+			}
+		}
+	})
+	
+	
+}

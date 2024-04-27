@@ -46,4 +46,15 @@ public class MemberServiceImpl {
 	public MemberDTO login(MemberDTO login) {
 		return memberDao.login(sqlSession, login);
 	}
+	
+//	find
+	
+	public int findIdCheck(MemberDTO member) {
+		return memberDao.findIdCheck(sqlSession, member);
+	}
+	
+	public String findId(MemberDTO member) {
+		return memberDao.findId(sqlSession, member);
+	}
+	
 }
