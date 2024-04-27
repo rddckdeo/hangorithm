@@ -159,3 +159,106 @@ p{
 
 /* education */
 /* techBoard techBoard2  techListBtn*/
+
+
+/* main 구역 */
+.boardCardStyle{
+	background-color:#EFF5FF;
+	border-radius:1rem;
+	width:95%;
+	height:85%;
+	padding:5px;
+	margin:2px;
+}
+
+.pagingBtnSize2{
+	width:30px;
+	height:30px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.thMain2{
+	border-bottom:1px solid;
+	padding-bottom:5px;
+	margin: 10px 5px 0 5px;
+	font-weight:600;
+}
+.thContent2{
+	margin:10px 0 10px 0;
+	height:40px;
+	align-items:center;
+}
+
+.td4{
+	width:70%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.contentFont12{
+	font-size:12px;
+}
+
+.EnrollBtn{
+	border: 1px solid #3333;
+	background-color:#7F96FF;
+	font-size:14px;
+	font-weight:600;
+	padding:10px;
+	width:100px;
+	text-align:center;
+	border-radius:0.5rem;
+}
+
+.EnrollATag{
+	color:white;
+	text-decoration-line:none;
+}
+/* Board Enroll */
+.titlePTag{
+	width:100%;
+	font-size:24px;
+	font-weight:900;
+	color:#7F96FF;
+	margin : 5px 0 5px 5px;
+}
+.titlePTag2{
+	width:100%;
+	margin:5px 0 5px 25px;
+	font-size:20px;
+	font-weight:600;
+	color:#333333ad;
+}
+
+.enrollInput1{
+	width:90%;
+	height: 10%;
+	padding : 10px;
+	resize:none;
+	font-size:14px;
+	border: 1px solid #3333;
+	border-radius:0.3rem;
+	
+}
+.enrollInput2{
+	width:90%;
+	height:90%;
+	padding : 10px;
+	resize:none;
+	font-size:14px;
+	border: 1px solid #3333;
+	border-radius:0.3rem;
+}
+
+.enrollBtn{
+	background-color:#1F96FF;
+	color:white;
+	border-radius:1rem;
+	border: 1px solid #3333;
+	margin: 5px 0 5px 0;
+	padding:5px;
+	cursor:pointer;
+}
+

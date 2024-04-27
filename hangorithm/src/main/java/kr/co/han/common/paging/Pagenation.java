@@ -11,6 +11,7 @@ public class Pagenation {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
+		
 		return new PageInfo(listCount, cpage, pageLimit,
 				boardLimit, maxPage, startPage, endPage, offset);
 	}

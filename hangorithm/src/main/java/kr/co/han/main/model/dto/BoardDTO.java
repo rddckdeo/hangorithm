@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BoardDTO {
+	// common
 	private int no;
 	private String ondate;
 	private String indate;
@@ -13,4 +14,8 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private String mNo;
+	
+	// list 추가 내용
+	private String name;
+	private int view;
 }

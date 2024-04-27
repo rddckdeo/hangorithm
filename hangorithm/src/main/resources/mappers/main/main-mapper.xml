@@ -11,14 +11,175 @@
 		<result column="b_title" property="title"></result>
 		<result column="b_content" property="content"></result>
 		<result column="m_no" property="mNo"></result>
+		<result column="b_view" property="view"></result>
+		<result column="m_name" property="name"></result>
 	</resultMap>
+	
+	 <resultMap type="board" id="infoResultSet">
+		<result column="I_no" property="no"></result>
+		<result column="I_ondate" property="ondate"></result>
+		<result column="I_indate" property="indate"></result>
+		<result column="I_deldate" property="deldate"></result>
+		<result column="I_title" property="title"></result>
+		<result column="I_content" property="content"></result>
+		<result column="m_no" property="mNo"></result>
+		<result column="I_view" property="view"></result>
+		<result column="m_name" property="name"></result>
+	</resultMap>
+	
+	 <resultMap type="board" id="techResultSet">
+		<result column="S_no" property="no"></result>
+		<result column="S_ondate" property="ondate"></result>
+		<result column="S_indate" property="indate"></result>
+		<result column="S_deldate" property="deldate"></result>
+		<result column="S_title" property="title"></result>
+		<result column="S_content" property="content"></result>
+		<result column="m_no" property="mNo"></result>
+		<result column="S_view" property="view"></result>
+		<result column="m_name" property="name"></result>
+	</resultMap>
+	<!-- info -->
+	<select id="infoListCount" resultType="_int">
+		SELECT COUNT(*) FROM INFO
+		WHERE I_DELDATE IS NULL
+	</select>
+	<select id="infoList" resultMap="infoResultSet">
+		SELECT I.*,M.M_NAME FROM INFO I
+		JOIN MEMBER M ON I.M_NO = M.M_NO
+		WHERE I_DELDATE IS NULl
+		ORDER BY I.I_NO DESC
+	</select>
+	<!-- board -->
 	<select id="boardListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD
 		WHERE B_DELDATE IS NULL
 	</select>
-	
 	<select id="boardList" resultMap="boardResultSet">
-		SELECT * FROM BOARD
-		WHERE B_DELDATE IS NULl
+		SELECT B.*, M.M_NAME FROM BOARD B
+		JOIN MEMBER M ON B.M_NO = M.M_NO
+		WHERE B.B_DELDATE IS NULl
+		ORDER BY B.B_NO DESC
 	</select>
+	<!-- tech -->
+		<select id="techListCount" resultType="_int">
+		SELECT COUNT(*) FROM SOLUTION
+		WHERE S_DELDATE IS NULL
+	</select>
+	<select id="techList" resultMap="techResultSet">
+		SELECT S.*,M.M_NAME FROM SOLUTION S
+		JOIN MEMBER M ON S.M_NO = M.M_NO
+		WHERE S_DELDATE IS NULl
+		ORDER BY S.S_NO DESC
+	</select>
+	
+	<!-- Enroll -->
+	<insert id="boardEnroll">
+		INSERT INTO BOARD(
+			B_NO,
+			B_ONDATE,
+			B_TITLE,
+			B_CONTENT,
+			M_NO
+		) VALUES(
+			board_seq.nextval,
+			SYSDATE,
+			#{title},
+			#{content},
+			#{mNo}
+		)
+		
+	</insert>
+	
+	<insert id="boardEnrollInfo">
+		INSERT INTO INFO(
+			I_NO,
+			I_ONDATE,
+			I_TITLE,
+			I_CONTENT,
+			M_NO
+		) VALUES(
+			info_seq.nextval,
+			SYSDATE,
+			#{title},
+			#{content},
+			#{mNo}
+		)
+	</insert>
+	
+	<insert id="boardEnrollTech">
+		INSERT INTO SOLUTION(
+			S_NO,
+			S_ONDATE,
+			S_TITLE,
+			S_CONTENT,
+			M_NO
+		) VALUES(
+			solution_seq.nextval,
+			SYSDATE,
+			#{title},
+			#{content},
+			#{mNo}
+		)
+	</insert>
+	
+	<select id="infoDetail" resultMap="infoResultSet">
+		SELECT I.*,M.M_NAME FROM INFO I
+		JOIN MEMBER M ON I.M_NO = M.M_NO
+		WHERE I_DELDATE IS NULL
+		AND I.I_NO = #{no}
+	</select>
+	<select id="boardDetail" resultMap="boardResultSet">
+		SELECT B.*, M.M_NAME FROM BOARD B
+		JOIN MEMBER M ON B.M_NO = M.M_NO
+		WHERE B_DELDATE IS NULL
+		AND B.B_NO = #{no}
+	</select>
+	<select id="techDetail" resultMap="techResultSet">
+		SELECT S.*,M.M_NAME FROM SOLUTION S
+		JOIN MEMBER M ON S.M_NO = M.M_NO
+		WHERE S_DELDATE IS NULL
+		AND S.S_NO = #{no}
+	</select>
+	
+	<!-- Search -->
+	<select id="infoListSearch" resultMap="infoResultSet">
+		SELECT I.*,M.M_NAME FROM INFO I
+		JOIN MEMBER M ON I.M_NO = M.M_NO
+		WHERE I.I_TITLE LIKE '%'|| #{item} || '%'
+		AND I.I_DELDATE IS NULL
+		ORDER BY I.I_ONDATE DESC
+	</select>
+	<select id="boardListSearch" resultMap="boardResultSet">
+		SELECT B.*,M.M_NAME FROM BOARD B
+		JOIN MEMBER M ON B.M_NO = M.M_NO
+		WHERE B.B_TITLE LIKE '%'|| #{item} || '%'
+		AND B.B_DELDATE IS NULL
+		ORDER BY B.B_ONDATE DESC
+	</select>
+	<select id="techListSearch" resultMap="techResultSet">
+		SELECT S.*,M.M_NAME FROM SOLUTION S
+		JOIN MEMBER M ON S.M_NO = M.M_NO
+		WHERE S.S_TITLE LIKE '%'|| #{item} || '%'
+		AND S.S_DELDATE IS NULL
+		ORDER BY S.S_ONDATE DESC
+	</select>
+	
+	<select id="boardListCountSearch" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+		WHERE B_TITLE LIKE '%'||#{item}||'%'
+		AND B_DELDATE IS NULL
+	</select>
+	<select id="infoListCountSearch" resultType="_int">
+		SELECT COUNT(*) FROM INFO
+		WHERE I_TITLE LIKE '%'||#{item}||'%'
+		AND I_DELDATE IS NULL
+	</select>
+	<select id="techListCountSearch" resultType="_int">
+		SELECT COUNT(*) FROM SOLUTION
+		WHERE S_TITLE LIKE '%'||#{item}||'%'
+		AND S_DELDATE IS NULL
+	</select>
+	
+	
+	
 </mapper>

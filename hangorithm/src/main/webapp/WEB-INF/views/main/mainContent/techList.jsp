@@ -16,7 +16,7 @@
 			<!-- 공지사항 -->
 				<div class="direction1 width100 height100 justifyCenter">
 					<div class="width70  techBoard">
-						<p class="width100 font1">나의 기술지원</p>
+						<p class="width100 font1">기술문의</p>
 						<!-- Card -->
 						<div class="width100 height100 direction2 alignCenter">
 							<div class="infoCard1">
@@ -67,13 +67,6 @@
 								<a class="pagingBtn pagingBtnSize">3</a>
 							</div>
 						</div>	
-					</div>
-					<!-- Btn 모음 -->
-					<div class="direction2 techBoard2">
-						<p class="font2">바로가기</p>
-						<button class="techListBtn">기술문의</button>
-						<button class="techListBtn">전체내역 확인</button>
-						<button class="techListBtn">라이선스 확인</button>
 					</div>
 				</div>
 			</div>

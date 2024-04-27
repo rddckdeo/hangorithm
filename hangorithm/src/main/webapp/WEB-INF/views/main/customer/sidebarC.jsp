@@ -13,13 +13,13 @@
 		 <div class="sidebarFont2">sidebar</div>
 		 <div class="sidebarFont">
 		 	<div class="sidebarDiv direction1 alignCenter">
-		 		<div class="tap"></div><a class="" href="mainForm.do?status=info">공지사항</a>
+		 		<div class="tap"></div><a class="aTag" href="customerForm.do?status=info">공지사항</a>
 	 		</div>
 		 	<div class="sidebarDiv direction1 alignCenter">
-		 		<div class="tap"></div><a class="" href="mainForm.do?status=board">문의사항</a>
+		 		<div class="tap"></div><a class="aTag" href="customerForm.do?status=board">문의사항</a>
 	 		</div>
 		 	<div class="sidebarDiv direction1 alignCenter">
-		 		<div class="tap"></div> test
+		 		<div class="tap"></div> <a class="aTag" href="customerForm.do?status=tech">기술지원</a>
 	 		</div>
 		 </div>
 	</div>

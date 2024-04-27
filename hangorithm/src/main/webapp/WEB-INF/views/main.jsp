@@ -17,7 +17,7 @@
 				<div class="direction2 mainBox2 justifyEve alignCenter">
 					<div class="mainBox2Click" onclick="mainBoxStatus(1)">내 프로필</div>
 					<div class="mainBox2Click"onclick="mainBoxStatus(2)">공지사항</div>
-					<div class="mainBox2Click"onclick="mainBoxStatus(3)">나의문의</div>
+					<div class="mainBox2Click"onclick="mainBoxStatus(3)">문의사항</div>
 					<div class="mainBox2Click"onclick="mainBoxStatus(4)">기술지원</div>
 				</div>
 				<!-- content 구역 -->
@@ -32,8 +32,8 @@
 						<c:when test="${sessionScope.BtnStatus == 'infoList' && !empty sessionScope.login}">
 							<%@ include file="/WEB-INF/views/main/mainContent/infoList.jsp"%>
 						</c:when>
-						<c:when test="${sessionScope.BtnStatus == 'education' && !empty sessionScope.login}">
-							<%@ include file="/WEB-INF/views/main/mainContent/education.jsp"%>
+						<c:when test="${sessionScope.BtnStatus == 'boardList' && !empty sessionScope.login}">
+							<%@ include file="/WEB-INF/views/main/mainContent/board.jsp"%>
 						</c:when>
 						<c:when test="${sessionScope.BtnStatus == 'techList' && !empty sessionScope.login}">
 							<%@ include file="/WEB-INF/views/main/mainContent/techList.jsp"%>
