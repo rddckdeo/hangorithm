@@ -10,13 +10,13 @@
 </head>
 <body>
 <div class="width100 height100 direction2">
-		<span class="title">교육일정</span>
+		<span class="title">문의사항</span>
 		<div class="direction1 alignCenter justifyAround">
 			<div class="width100 height100 alignCenter justifyAround">
 			<!-- 공지사항 -->
 				<div class="direction1 width100 height100 justifyCenter">
 					<div class="width70  techBoard">
-						<p class="width100 font1">나의 교육일정</p>
+						<p class="width100 font1">문의사항</p>
 						<!-- Card -->
 						<div class="width100 height100 direction2 alignCenter">
 							<div class="infoCard1">
@@ -67,13 +67,6 @@
 								<a class="pagingBtn pagingBtnSize">3</a>
 							</div>
 						</div>	
-					</div>
-					<!-- Btn 모음 -->
-					<div class="direction2 techBoard2">
-						<p class="font2">바로가기</p>
-						<button class="techListBtn">교육소개</button>
-						<button class="techListBtn">교육일정</button>
-						<button class="techListBtn">교육신청</button>
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <link href="/resources/css/main/content.css" rel="styleSheet"/>
+
 </head>
 <body>
 	<div class="width100 height100 direction2">
@@ -44,9 +45,9 @@
 			<!-- button 모음 -->
 			<div class="direction2 contentDiv3">
 				<p class="font2 textAlign">바로가기</p>
-				<button class="contentBtn" type="button">내 정보 수정하기</button>
-				<button class="contentBtn" type="button">나의 회사</button>
-				<button class="contentBtn" type="button">QnA 작성하기</button>
+				<button class="contentBtn" type="button" onclick="myprofile('my')">내 정보 수정하기</button>
+				<button class="contentBtn" type="button" onclick="myprofile('company')">나의 회사</button>
+				<button class="contentBtn" type="button" onclick="myprofile('customer')">문의 작성</button>
 			</div>
 		</div>
 	</div>

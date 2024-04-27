@@ -12,20 +12,20 @@
 	 <div class="sidebarFont">
 	 	<div class="sidebarDiv direction1 alignCenter">
 	 		<div class="tap"></div>
-	 		<a class="aTag" href="/mypage/myinfoForm.do">나의 정보</a>
+	 		<a class="aTag" href="/mypage/myPageForm.do?status=info">나의 정보</a>
  		</div>
 	 	<div class="sidebarDiv direction1 alignCenter">
 	 		<div class="tap"></div>
-	 		<a class="aTag" href="/mypage/myCompanyForm.do">소속 회사</a>
+	 		<a class="aTag" href="/mypage/myPageForm.do?status=company">소속 회사</a>
  		</div>
  		<div class="sidebarFont2">My inquiry</div>
 	 	<div class="sidebarDiv direction1 alignCenter">
 	 		<div class="tap"></div>
-	 		<a class="aTag" href="/mypage/myInqueryForm.do">나의 문의사항</a>
+	 		<a class="aTag" href="/mypage/myPageForm.do?status=board">나의 문의사항</a>
  		</div>
 	 	<div class="sidebarDiv direction1 alignCenter">
 	 		<div class="tap"></div>
-	 		<a class="aTag" href="/mypage/myTechForm.do">나의 기술지원</a>
+	 		<a class="aTag" href="/mypage/myPageForm.do?status=tech">나의 기술지원</a>
  		</div>
 	 </div>
 </div>

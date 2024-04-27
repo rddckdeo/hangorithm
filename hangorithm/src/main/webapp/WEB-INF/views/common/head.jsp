@@ -7,7 +7,7 @@
 <title>Hello</title>
 <link href="/resources/css/default.css" rel="stylesheet"/>
 <link href="/resources/css/main.css" rel="stylesheet"/>
-
+<script src="/resources/javascript/main.js"></script>
 </head>
 <body>
 

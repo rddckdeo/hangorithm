@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,26 +30,56 @@ public class HeaderController {
 	public String companyForm() {
 		return "main/company";
 	}
-	@GetMapping("productForm.do")
-	public String productForm() {
-		return "main/product";
-	}
 	@GetMapping("customerForm.do")
-	public String customerForm() {
+	public String customerForm(Model model,
+								@RequestParam(value="status" ,defaultValue="info")String status,
+								@RequestParam(value="cpage", defaultValue="1")int cpage) {
+		// 기본변수 설정
+		int boardLimit = 5;
+		int pageLimit = 5;
+		int pageListCount = 0;
+		
+		// status 별로 List 나오게 설정하기
+		if(status.equals("info")) {
+			// 공지사항
+			pageListCount = mainService.infoListCount();
+			PageInfo pi = Pagenation.getPageInfo(pageListCount, cpage, pageLimit, boardLimit);
+			List<BoardDTO> list = mainService.infoList(pi);
+			model.addAttribute("list",list);
+			model.addAttribute("pi",pi);
+			model.addAttribute("status",status);
+			
+		}else if(status.equals("board")) {
+			// 문의사항
+			pageListCount = mainService.boardListCount();
+			PageInfo pi = Pagenation.getPageInfo(pageListCount, cpage, pageLimit, boardLimit);
+			List<BoardDTO> list = mainService.boardList(pi);
+			model.addAttribute("list",list);
+			model.addAttribute("pi",pi);
+			model.addAttribute("status",status);
+		}else if(status.equals("tech")) {
+			// 기술지원
+			pageListCount = mainService.techListCount();
+			PageInfo pi = Pagenation.getPageInfo(pageListCount, cpage, pageLimit, boardLimit);
+			List<BoardDTO> list = mainService.techList(pi);
+			model.addAttribute("list",list);
+			model.addAttribute("pi",pi);
+			model.addAttribute("status",status);
+		}
 		return "main/customer";
 	}
-	// status별 페이지 이동
-	@GetMapping("mainForm.do")
-	public String mainForm(@RequestParam("status")String status) {
-		
-		//info
-		if(status.equals("info")) {
-			return "redirect:/main/infoList.do";
-		}else if(status.equals("board")) {
-			return "redirect:/main/boardList.do";
+	
+	@GetMapping("boardEnrollForm.do")
+	public String boardEnrollForm(@RequestParam(value="status", defaultValue="info")String status,
+								Model model, HttpSession session) {
+		try{
+			MemberDTO login = (MemberDTO)session.getAttribute("login");
+			Integer mNo = login.getMNo();
+			model.addAttribute("status",status);
+			return "main/customer/customerEnroll";
+		}catch(NullPointerException e) {
+			return "redirect:/member/loginForm.do";
 		}
-		
-		return "/";
 	}
 	
 	// 메인 Content 교체 및 List 불러오기
@@ -63,7 +95,6 @@ public class HeaderController {
 			int boardList = 5;
 			int pageLimit = 5;
 			int listCount = 0;
-			System.out.println(data);
 			// status별 List 불러오기
 			if(data.equals("infoList")) {
 				// infoList
@@ -72,14 +103,14 @@ public class HeaderController {
 				PageInfo infoPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardList);
 				List<BoardDTO> infoList = mainService.boardList(infoPi);
 				
-				model.addAttribute("infoList",infoList);
-				model.addAttribute("infoPi",infoPi);
+				model.addAttribute("list",infoList);
+				model.addAttribute("pi",infoPi);
 				
 			}else if(data.equals("techList")) {
 				System.out.println("techList 실행");
 				
-			}else if(data.equals("education")) {
-				System.out.println("education 실행");
+			}else if(data.equals("boardList")) {
+				System.out.println("boardList 실행");
 				
 			}
 			
@@ -87,22 +118,101 @@ public class HeaderController {
 		return "main";
 	}
 	
-//	Customer
-	//infoList
-	@GetMapping("infoList.do")
-	public String infoList() {
+	@PostMapping("boardEnroll.do")
+	public String boardEnroll(@ModelAttribute BoardDTO board,
+							@RequestParam("status") String status) {
 		
-		//여기 작성하기
-		// Enroll도 추가하기 24.04.18
+		int result = 0;
 		
-		return "main/customer/infoList";
+		if(status.equals("info")) {
+			result = mainService.boardEnrollInfo(board);
+		}else if(status.equals("tech")) {
+			result = mainService.boardEnrollTech(board);
+		}else if(status.equals("board")) {
+			result = mainService.boardEnroll(board);
+		}
+		if(result > 0) {
+			return "redirect:/main/customerForm.do?status=" + status;
+		}else {
+			return "error";
+		}
 	}
-	//boardList
-	@GetMapping("boardList.do")
-	public String boardList() {
+
+	@GetMapping("customerDetailForm.do")
+	public String customerDetailForm(@RequestParam("no")int no,
+									@RequestParam("status")String status,
+									Model model) {
+		if(status.equals("info")) {
+			BoardDTO list = mainService.customerDetailInfo(no);
+			
+			String ondate = list.getOndate().substring(2,16);
+			list.setOndate(ondate);
+			if(list.getIndate() != null) {
+				String indate = list.getIndate().substring(2,16);
+				list.setIndate(indate);
+			}
+			
+			model.addAttribute("list",list);
+			
+		}else if(status.equals("tech")) {
+			BoardDTO  list = mainService.customerDetailTech(no);
+			String ondate = list.getOndate().substring(2,16);
+			list.setOndate(ondate);
+			if(list.getIndate() != null) {
+				String indate = list.getIndate().substring(2,16);
+				list.setIndate(indate);
+			}
+			model.addAttribute("list",list);
+		}else if(status.equals("board")) {
+			BoardDTO list = mainService.customerDetailBoard(no);
+			String ondate = list.getOndate().substring(2,16);
+			list.setOndate(ondate);
+			if(list.getIndate() != null) {
+				String indate = list.getIndate().substring(2,16);
+				list.setIndate(indate);
+			}
+			model.addAttribute("list",list);
+		}
+		
+		return "main/customer/customerDetail";
+	}
+	
+	
+	@GetMapping("searchItem.do")
+	public String searchItem(Model model,
+							@RequestParam(value="item", defaultValue="")String item,
+							@RequestParam(value="boardCountAdd", defaultValue="0")int boardCountAdd
+							) {
+		int boardLimit = 0;
+		if(boardCountAdd > 0) {
+			boardLimit = boardCountAdd;
+		}else {
+			boardLimit = 5;
+		}
+		
+		int cpage = 1;
+		int pageLimit = 5;
+		int boardListCount = mainService.boardListCountSearch(item);
+		int infoListCount = mainService.infoListCountSearch(item);
+		int techListCount = mainService.techListCountSearch(item);
+		
+		PageInfo piB = Pagenation.getPageInfo(boardListCount, cpage, pageLimit, boardLimit);
+		PageInfo piI = Pagenation.getPageInfo(infoListCount, cpage, pageLimit, boardLimit);
+		PageInfo piT = Pagenation.getPageInfo(techListCount, cpage, pageLimit, boardLimit);
+		
+		List<BoardDTO> infoList = mainService.infoListSearch(item, piI);
+		List<BoardDTO> boardList = mainService.boardListSearch(item, piB);
+		List<BoardDTO> techList = mainService.techListSearch(item, piT);
+		
+		model.addAttribute("item",item);
+		model.addAttribute("infoList",infoList);
+		model.addAttribute("boardList",boardList);
+		model.addAttribute("techList",techList);
+		
+		model.addAttribute("boardLimit",boardLimit);
 		
 		
-		return "main/customer/boardList";
+		return "/main/searchList";
 	}
 	
 }
