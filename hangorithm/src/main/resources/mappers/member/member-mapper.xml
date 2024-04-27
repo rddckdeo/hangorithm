@@ -106,4 +106,18 @@
 		AND M_DELDATE IS NULL
 	</select>
 	
+	
+	<select id="findIdCheck" resultType="_int">
+		SELECT COUNT(M_ID) FROM MEMBER
+		WHERE M_NAME = #{mName}
+		AND M_EMAIL = #{mEmail}
+		AND M_DELDATE IS NULL
+	</select>
+	<select id="findId" resultType="String">
+		SELECT M_ID FROM MEMBER
+		WHERE M_NAME = #{mName}
+		AND M_EMAIL = #{mEmail}
+		AND M_DELDATE IS NULL
+	</select>
+	
 </mapper>

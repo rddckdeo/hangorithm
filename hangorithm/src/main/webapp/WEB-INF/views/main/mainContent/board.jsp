@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,43 +30,36 @@
 									<div class="td3">진행도</div>
 								</div>
 								<!-- td -->
-								<div class="direction1 textAlign thContent">
-									<div class="td1">1</div>
-									<div class="td2">공지사항을 알려드립니다111111</div>
-									<div class="td3">23.04.25</div>
-									<div class="td3">진행중</div>
-								</div>
-								<div class="direction1 textAlign thContent">
-									<div class="td1">1</div>
-									<div class="td2">공지사항을 알려드립니다111111</div>
-									<div class="td3">23.04.25</div>
-									<div class="td3">진행중</div>
-								</div>
-								<div class="direction1 textAlign thContent">
-									<div class="td1">1</div>
-									<div class="td2">공지사항을 알려드립니다111111</div>
-									<div class="td3">23.04.25</div>
-									<div class="td3">진행중</div>
-								</div>
-								<div class="direction1 textAlign thContent">
-									<div class="td1">1</div>
-									<div class="td2">공지사항을 알려드립니다111111</div>
-									<div class="td3">23.04.25</div>
-									<div class="td3">진행중</div>
-								</div>
-								<div class="direction1 textAlign thContent">
-									<div class="td1">1</div>
-									<div class="td2">공지사항을 알려드립니다111111</div>
-									<div class="td3">23.04.25</div>
-									<div class="td3">진행중</div>
-								</div>
-								
+								<c:forEach var="list" items="${list}">
+									<div class="direction1 textAlign thContent" onclick="searchDetail(${list.no}, 'board')">
+										<div class="td1">${list.no}</div>
+										<div class="td2">${list.title}</div>
+										<div class="td3">${list.ondate}</div>
+										<div class="td3">${list.name}</div>
+									</div>
+								</c:forEach>
 							</div>
 							<!-- pagination -->
 							<div class="direction1">
-								<a class="pagingBtn pagingBtnSize">1</a>
-								<a class="pagingBtn pagingBtnSize">2</a>
-								<a class="pagingBtn pagingBtnSize">3</a>
+								<c:choose>
+									<c:when test="${pi.cpage eq 1}">
+										<a class="pagingBtn pagingBtnSize" href="#">&lt;</a>
+									</c:when>
+									<c:otherwise>
+										<a class="pagingBtn pagingBtnSize" href="/main/headerChange.do?data=boardList&&cpage=${pi.cpage - 1}">&lt;</a>
+									</c:otherwise>
+								</c:choose>
+								<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+									<a class="pagingBtn pagingBtnSize" href="/main/headerChange.do?data=boardList&cpage=${page}">${page}</a>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${pi.cpage eq pi.maxPage}">
+										<a class="pagingBtn pagingBtnSize" href="#">&gt;</a>
+									</c:when>
+									<c:otherwise>
+										<a class="pagingBtn pagingBtnSize" href="/main/headerChange.do?data=boardList&&cpage=${pi.cpage + 1}">&gt;</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>	
 					</div>

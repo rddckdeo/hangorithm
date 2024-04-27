@@ -40,4 +40,14 @@ public class MemberDAO {
 	public MemberDTO login(SqlSessionTemplate sqlSession,MemberDTO login) {
 		return sqlSession.selectOne("memberMapper.login",login);
 	}
+//	find
+	
+	public int findIdCheck(SqlSessionTemplate sqlSession, MemberDTO member) {
+		return sqlSession.selectOne("memberMapper.findIdCheck",member);
+	}
+	
+	public String findId(SqlSessionTemplate sqlSession, MemberDTO member) {
+		return sqlSession.selectOne("memberMapper.findId", member);
+	}
+	
 }
