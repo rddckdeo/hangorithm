@@ -41,6 +41,9 @@ body{
 .height100{
 	height:100%;
 }
+.height90{
+	height:90%;
+}
 
 .justifyCenter{
 	display:flex;
@@ -124,6 +127,9 @@ body{
 .marginTop20{
 	margin-top:20px;
 }
+.marginLeftt30{
+	margin-left:30px;
+}
 
 .textCenter{
 	text-align:center;
@@ -142,4 +148,10 @@ body{
 
 .displayNone{
 	display:none;
+}
+.noMargin{
+	margin:0;
+}
+.borderRadius1{
+	border-radius:1rem;
 }

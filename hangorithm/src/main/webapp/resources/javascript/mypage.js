@@ -5,7 +5,7 @@ function undisabled(){
 	document.getElementById("birth").disabled = false;
 	
 	document.getElementById("updateBtn").style.display = 'none';
-	document.getElementById("saveBtn").style.display = 'block';
+	document.getElementById("saveBtn").style.display = 'flex';
 	
 }
 

@@ -17,13 +17,12 @@
 			<div class="width100 height100 alignCenter justifyAround">
 			<!-- 공지사항 -->
 				<div class="direction1 width100 height100 justifyCenter">
-					<div class="width70  techBoard">
-						<p class="width100 font1">문의사항</p>
+					<div class="width90  techBoard">
 						<!-- Card -->
 						<div class="width100 height100 direction2 alignCenter">
-							<div class="infoCard1">
+							<div class="infoCard1 width100 direction2">
 								<!-- th -->
-								<div class="direction1 textAlign thMain">
+								<div class="direction1 textAlign thMain width100">
 									<div class="td1">No</div>
 									<div class="td2">제목</div>
 									<div class="td3">작성날</div>
@@ -31,7 +30,7 @@
 								</div>
 								<!-- td -->
 								<c:forEach var="list" items="${list}">
-									<div class="direction1 textAlign thContent" onclick="searchDetail(${list.no}, 'board')">
+									<div class="direction1 textAlign thContent width100" onclick="searchDetail(${list.no}, 'board')">
 										<div class="td1">${list.no}</div>
 										<div class="td2">${list.title}</div>
 										<div class="td3">${list.ondate}</div>
@@ -43,7 +42,7 @@
 							<div class="direction1">
 								<c:choose>
 									<c:when test="${pi.cpage eq 1}">
-										<a class="pagingBtn pagingBtnSize" href="#">&lt;</a>
+										<a class="pagingBtn pagingBtnSize displayAllCenter" href="#">&lt;</a>
 									</c:when>
 									<c:otherwise>
 										<a class="pagingBtn pagingBtnSize" href="/main/headerChange.do?data=boardList&&cpage=${pi.cpage - 1}">&lt;</a>

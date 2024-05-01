@@ -16,13 +16,12 @@
 			<div class="width100 height100 alignCenter justifyAround">
 			<!-- 공지사항 -->
 				<div class="direction1 width100 height100 justifyCenter">
-					<div class="width70  techBoard">
-						<p class="width100 font1">기술문의</p>
+					<div class="width90  techBoard">
 						<!-- Card -->
 						<div class="width100 height100 direction2 alignCenter">
-							<div class="infoCard1">
+							<div class="infoCard1 width100 direction2">
 								<!-- th -->
-								<div class="direction1 textAlign thMain">
+								<div class="direction1 textAlign thMain width100">
 									<div class="td1">No</div>
 									<div class="td2">제목</div>
 									<div class="td3">작성날</div>
@@ -30,7 +29,7 @@
 								</div>
 								<!-- td -->	
 								<c:forEach var="list" items="${list}">
-									<div class="direction1 textAlign thContent" onclick="searchDetail(${list.no}, 'tech')">
+									<div class="direction1 textAlign thContent width100" onclick="searchDetail(${list.no}, 'tech')">
 										<div class="td1">${list.no}</div>
 										<div class="td2">${list.title}</div>
 										<div class="td3">${list.ondate}</div>
