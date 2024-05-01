@@ -64,4 +64,145 @@
 /* content */
 .saveBtn{
 	display:none;
+	margin:0 25px 0 0;
+	width:150px;
+	justify-content:center;
+	align-items:center;
+	border: 1px solid #3333;
+	border-radius : 0.5rem;
+	font-size:14px;
+	font-weight:600;
+	padding:10px;
+	background-color:#7F96FF;
+	color:white;
+}
+
+
+.mypageP{
+	margin:15px 0 0 15px;
+	font-size:30px;
+	font-weight:600;
+}
+
+.mypageDiv1{
+	width:100%;
+	height:350px;
+	display:flex;
+	justify-content:space-around;
+	align-items:center;
+	flex-direction:row;
+}
+.mypageDiv2{
+	width:60%;
+}
+
+.mypageTh{
+	width:20%;
+	text-align:center;
+	font-size:20px;
+	font-weight:600;
+}
+.mypageTh2{
+	width:30%;
+	text-align:center;
+	font-size:20px;
+	font-weight:600;
+}
+.mypageTd{
+	width:70%;
+	height:30px;
+	text-align:center;
+	font-size:16px;
+	margin-left:15px;
+	background-color:white;
+}
+.mypageTd2{
+	width:50%;
+	height:35px;
+	text-align:center;
+	font-size:16px;
+	margin-left:15px;
+	background-color:white;
+	border:1px solid #3333;
+	border-radius:0.5rem;
+}
+.mypageBtn{
+	margin:0 25px 0 0;
+	width:150px;
+	height:30px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	border: 1px solid #3333;
+	border-radius : 0.5rem;
+	font-size:14px;
+	font-weight:600;
+	padding:10px;
+	background-color:#7F96FF;
+	color:white;
+}
+
+.mypageBtnBox{
+	height:51.6px;
+}
+
+.companyDiv1{
+	width:100%;
+	height:400px;
+}
+.companyCard{
+	width:90%;
+	height:90%;
+	background-color:#EFF5FF;
+	border-radius:1rem;
+	margin:20px 0 20px 0;
+}
+.companyCard2{
+	background-color:white;
+	border-radius:1rem;
+	width:90%;
+	height:90%;
+}
+.companyCardDiv{
+	justify-content:center;
+	background-color:white;
+	margin-bottom:15px;
+}
+
+.boardCard{
+	width:90%;
+	height:90%;
+	background-color:#EFF5FF;
+	border-radius:1rem;
+	margin:20px 0 20px 0;
+}
+.boardCard2{
+	width:90%;
+	height:350px;
+	background-color:white;
+	margin-top:20px;
+	
+}
+
+.bTh1{
+	width:10%;
+	text-align:center;
+}
+.bTh2{
+	width:15%;
+	text-align:center;
+}
+.bTh3{
+	width:20%;
+	text-align:center;
+}
+.bTh4{
+	width:30%;
+	text-align:center;
+}
+.thborderBottom{
+	margin-top:25px;
+	margin-bottom:5px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #3333;
 }

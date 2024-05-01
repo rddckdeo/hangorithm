@@ -34,7 +34,7 @@ public class MypageController {
 						@RequestParam(value="cpage", defaultValue="1")int cpage,
 						Model model, HttpSession session) {
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
-		int boardLimit = 10;
+		int boardLimit = 6;
 		int pageLimit = 10;
 		int listCount = 0;
 		if(login != null && status.equals("info")) {
@@ -57,6 +57,10 @@ public class MypageController {
 			PageInfo pi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 			
 			List<BoardDTO> list = mypageService.selectBoard(login.getMNo(), pi);
+			for(BoardDTO date : list) {
+				String ondate =  date.getOndate().substring(2,16);
+				date.setOndate(ondate);
+			}
 			model.addAttribute("list",list);
 			model.addAttribute("pi",pi);
 			model.addAttribute("status",status);
@@ -66,6 +70,11 @@ public class MypageController {
 			PageInfo pi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 			
 			List<BoardDTO> list = mypageService.selectTech(login.getMNo(), pi);
+			for(BoardDTO date : list) {
+				String ondate =  date.getOndate().substring(2,16);
+				date.setOndate(ondate);
+			}
+			
 			model.addAttribute("list",list);
 			model.addAttribute("pi",pi);
 			model.addAttribute("status",status);

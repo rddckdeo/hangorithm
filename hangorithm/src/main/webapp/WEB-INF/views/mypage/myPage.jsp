@@ -27,56 +27,98 @@
 			<div class="direction1 width100 justifyEve">
 				<%@ include file="/WEB-INF/views/mypage/common/sidebar.jsp"%>
 				<!-- main Card -->
-				<div class="width80 borderDefault direction2">
+				<div class="width80 borderDefault direction2 displayAllCenter">
 					<!-- status별 Content -->
 					<c:choose>
 						<c:when test="${status eq 'info'}">
-							<p>내 정보</p>
-							<div class="direction1 width100 alignCenter justifyAround">
+							<p class="mypageP">내 정보</p>
+							<div class="mypageDiv1">
 								
 									<div><img src="${login.MPath}${login.MImg}" width="200"></img></div>
-									<div class="direction2">
-										
-										<div>가입 날짜 : <input value="${login.MOndate}" id="ondate" disabled></div>
-										<div>아이디 : <input value="${login.MId}" id="id" disabled></div>
-										<div>이름 : <input value="${login.MName}" disabled id="name"></div>
-										<div>직책 : <input value="${login.MPosition}" disabled id="position"></div>
-										<div>이메일 : <input value="${login.MEmail}" disabled id="email"></div>
-										<div>생일 : <input value="${login.MBirth}" disabled id="birth"></div>
+									<div class="direction2 mypageDiv2">
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">가입 날짜 : </div>
+											<input class="mypageTd" value="${login.MOndate}" id="ondate" disabled>
+										</div>
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">아이디 : </div>
+											<input class="mypageTd" value="${login.MId}" id="id" disabled>
+										</div>
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">이름 : </div>
+											<input class="mypageTd" value="${login.MName}" disabled id="name">
+										</div>
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">직책 : </div>
+											<input class="mypageTd" value="${login.MPosition}" disabled id="position">
+										</div>
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">이메일 : </div>
+											<input class="mypageTd" value="${login.MEmail}" disabled id="email">
+										</div>
+										<div class="direction1 marginBottom10 alignCenter">
+											<div class="mypageTh">생일 : </div>
+											<input class="mypageTd" value="${login.MBirth}" disabled id="birth">
+										</div>
 									</div>
 								</div>
-								<div class="width100 justifyEnd">
-									<div class="" onclick="undisabled()" id="updateBtn">수정하기</div>
-									<button type="button" onclick="saveInfo()" class="saveBtn" id="saveBtn">저장하기</button>
+								<div class="width100 justifyEnd mypageBtnBox">
+									<div class="mypageBtn" onclick="undisabled()" id="updateBtn">수정하기</div>
+									<div onclick="saveInfo()" class="saveBtn" id="saveBtn">저장하기</div>
 								</div>
 						</c:when>
 						<c:when test="${status eq 'company'}">
-							<p>회사 정보</p>
-							<div>회사 이름 : ${company.CName}</div>
-							<div>회사 등록일 : ${company.COndate}</div>
-							<div>회사 번호 : ${company.CNum}</div>
-							<div>회사 주소 : ${company.CLocation}</div>
-							<div>회사 사업자 번호 : ${company.CBusiness}</div>
+							<p class="mypageP">회사 정보</p>
+							<div class="companyDiv1 companyCard displayAllCenter">
+								<div class="displayAllCenter direction2 width90 height90 companyCard2">
+									<div class="width100">
+										<!-- content -->
+										<div class="direction1 companyCardDiv">
+											<div class="mypageTh2">회사 이름 : </div>
+											<div class="mypageTd2">${company.CName}</div>
+										</div>
+										<div class="direction1 companyCardDiv">
+											<div class="mypageTh2">회사 등록일 : </div>
+											<div class="mypageTd2">${company.COndate}</div>
+										</div>
+										<div class="direction1 companyCardDiv">
+											<div class="mypageTh2">회사 번호 : </div>
+											<div class="mypageTd2">${company.CNum}</div>
+										</div>
+										<div class="direction1 companyCardDiv">
+											<div class="mypageTh2">회사 주소 : </div>
+											<div class="mypageTd2">${company.CLocation}</div>
+										</div>
+										<div class="direction1 companyCardDiv">
+											<div class="mypageTh2">회사 사업자 번호 : </div>
+											<div class="mypageTd2">${company.CBusiness}</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</c:when>
 						<c:when test="${status eq 'board'}">
-							<div class="width100 direction2 displayAllCenter">
+							<p class="mypageP">문의 사항</p>
+							<div class="direction2 displayAllCenter boardCard displayAllCenter">
 								<!-- th -->
-								<div class="direction1 textAlign thMain2">
-									<div class="td1">No</div>
-									<div class="td4">제목</div>
-									<div class="td3">작성날</div>
-									<div class="td3">작성자</div>
-									<div class="td3">조회수</div>
-								</div>
-								<c:forEach items="${list}" var="list">
-									<div class="direction1 textAlign">
-										<div class="td1">${list.no}</div>
-										<div class="td4">${list.title}</div>
-										<div class="td3">${list.ondate}</div>
-										<div class="td3">${list.name}</div>
-										<div class="td3">${list.view}</div>
+								<div class="boardCard2 alignCenter direction2">
+									<div class="direction1 textAlign width100 thborderBottom">
+										<div class="bTh1">No</div>
+										<div class="bTh4">제목</div>
+										<div class="bTh3">작성날</div>
+										<div class="bTh3">작성자</div>
+										<div class="bTh3">조회수</div>
 									</div>
-								</c:forEach>
+									<c:forEach items="${list}" var="list">
+										<div class="direction1 textAlign width100 marginBottom20">
+											<div class="bTh1">${list.no}</div>
+											<div class="bTh4">${list.title}</div>
+											<div class="bTh3">${list.ondate}</div>
+											<div class="bTh3">${list.name}</div>
+											<div class="bTh3">${list.view}</div>
+										</div>
+									</c:forEach>
+								</div>
 								<!-- paging -->
 								<div class="direction1">
 									<c:choose>
@@ -100,24 +142,27 @@
 							</div>
 						</c:when>
 						<c:when test="${status eq 'tech'}">
-							<div class="width100 direction2 displayAllCenter">
+							<p class="mypageP">문의 사항</p>
+							<div class="direction2 displayAllCenter boardCard displayAllCenter">
 								<!-- th -->
-								<div class="direction1 textAlign thMain2">
-									<div class="td1">No</div>
-									<div class="td4">제목</div>
-									<div class="td3">작성날</div>
-									<div class="td3">작성자</div>
-									<div class="td3">조회수</div>
-								</div>
+								<div class="boardCard2 alignCenter direction2">
+									<div class="direction1 textAlign width100 thborderBottom">
+										<div class="bTh1">No</div>
+										<div class="bTh4">제목</div>
+										<div class="bTh3">작성날</div>
+										<div class="bTh3">작성자</div>
+										<div class="bTh3">조회수</div>
+									</div>
 								<c:forEach items="${list}" var="list">
-									<div class="direction1 textAlign">
-										<div class="td1">${list.no}</div>
-										<div class="td4">${list.title}</div>
-										<div class="td3">${list.ondate}</div>
-										<div class="td3">${list.name}</div>
-										<div class="td3">${list.view}</div>
+									<div class="direction1 textAlign width100 marginBottom20">
+										<div class="bTh1">${list.no}</div>
+										<div class="bTh4">${list.title}</div>
+										<div class="bTh3">${list.ondate}</div>
+										<div class="bTh3">${list.name}</div>
+										<div class="bTh3">${list.view}</div>
 									</div>
 								</c:forEach>
+								</div>
 								<!-- paging -->
 								<div class="direction1">
 									<c:choose>

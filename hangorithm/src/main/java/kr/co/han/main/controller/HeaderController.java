@@ -99,9 +99,14 @@ public class HeaderController {
 			if(data.equals("infoList")) {
 				// infoList
 				listCount = mainService.infoListCount();
-				
 				PageInfo infoPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 				List<BoardDTO> infoList = mainService.infoList(infoPi);
+				
+				for(BoardDTO board : infoList) {
+					String ondate = board.getOndate();
+					String subOndate = ondate.substring(2,16);
+					board.setOndate(subOndate);
+				}
 				
 				model.addAttribute("list",infoList);
 				model.addAttribute("pi",infoPi);
@@ -111,12 +116,24 @@ public class HeaderController {
 				PageInfo boardPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 				List<BoardDTO> boardList = mainService.boardList(boardPi);
 				
+				for(BoardDTO board : boardList) {
+					String ondate = board.getOndate();
+					String subOndate = ondate.substring(2,16);
+					board.setOndate(subOndate);
+				}
+				
 				model.addAttribute("list",boardList);
 				model.addAttribute("pi",boardPi);
 			}else if(data.equals("techList")) {
 				listCount = mainService.techListCount();
 				PageInfo techPi = Pagenation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 				List<BoardDTO> techList = mainService.techList(techPi);
+				
+				for(BoardDTO board : techList) {
+					String ondate = board.getOndate();
+					String subOndate = ondate.substring(2,16);
+					board.setOndate(subOndate);
+				}
 				
 				model.addAttribute("list",techList);
 				model.addAttribute("pi",techPi);

@@ -53,9 +53,11 @@
 	</select>
 	
 	<select id="selectBoard" resultMap="boardResultSet">
-		SELECT * FROM BOARD
-		WHERE M_NO = #{no}
-		AND B_DELDATE IS NULL
+		SELECT B.*,M.M_NAME FROM BOARD B
+		JOIN MEMBER M ON B.M_NO = M.M_NO
+		WHERE B.M_NO = #{no}
+		AND B.B_DELDATE IS NULL
+		ORDER BY B.B_ONDATE DESC
 	</select>
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD
@@ -65,9 +67,11 @@
 	
 	
 	<select id="selectTech" resultMap="techResultSet">
-		SELECT * FROM SOLUTION
-		WHERE M_NO = #{no}
-		AND S_DELDATE IS NULL
+		SELECT S.*,M.M_NAME FROM SOLUTION S
+		JOIN MEMBER M ON S.M_NO = M.M_NO
+		WHERE S.M_NO = #{no}
+		AND S.S_DELDATE IS NULL
+		ORDER BY S.S_ONDATE DESC
 	</select>
 	<select id="selectTechListCount" resultType="_int">
 		SELECT COUNT(*) FROM SOLUTION
