@@ -1,6 +1,8 @@
 # hangorithm
-![image](https://github.com/rddckdeo/hangorithm/assets/150643230/19574423-19f6-4362-9156-c97d002a649f)
-
+![image]()
+<p align="center">
+    <img src="https://github.com/rddckdeo/hangorithm/assets/150643230/19574423-19f6-4362-9156-c97d002a649f" width="700">
+</p> <br/>
 # 홈페이지 사진
 <div align="center">
     <img src="https://github.com/rddckdeo/hangorithm/assets/150643230/2fdb55cc-758e-473e-9868-a0a685085d2a" width="600">
